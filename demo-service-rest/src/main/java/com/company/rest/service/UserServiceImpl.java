@@ -64,14 +64,11 @@ public class UserServiceImpl implements UserService {
 	public User updateUser(User inUser) {
 		User outUser = userRepository.getUserById(inUser.getId());
 		if (outUser != null) {
-			//outUser = new User();
 			outUser.setName(inUser.getName());
 			outUser.setEmail(inUser.getEmail());
 			outUser.setPassword(inUser.getPassword());
 			outUser.setRole(inUser.getRole());
 			outUser.setActive(inUser.getActive());
-			outUser.setCreated(inUser.getCreated());
-			outUser.setUpdated(inUser.getUpdated());
 			userRepository.save(outUser);
 			BeanUtils.copyProperties(outUser, inUser);
 			return inUser;
@@ -87,13 +84,26 @@ public class UserServiceImpl implements UserService {
 			if (outUser == null) {
 				return -1;
 			} else {
-				userRepository.delete(id);
+				userRepository.delete(outUser.getId());
 				return 1;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+
+	@Override
+	public User updatePartial(User user, long id) {
+		User outUser = userRepository.getUserById(id);
+		if (outUser != null) {
+			outUser.setEmail(user.getEmail());
+			userRepository.save(outUser);
+			BeanUtils.copyProperties(outUser, user);
+			return user;
+		} else {
+			return null;
+		}
 	}
 
 }

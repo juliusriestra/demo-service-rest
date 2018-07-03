@@ -11,9 +11,7 @@ public class User implements Serializable {
 		private String password;
 		private	String role;
 		private Integer active;
-		private Date created;
-		private Date updated;
-
+		
 		public Long getId() {
 			return id;
 		}
@@ -62,19 +60,4 @@ public class User implements Serializable {
 			this.active = active;
 		}
 
-		public Date getCreated() {
-			return created;
-		}
-
-		public void setCreated(Date created) {
-			this.created = created;
-		}
-
-		public Date getUpdated() {
-			return updated;
-		}
-
-		public void setUpdated(Date updated) {
-			this.updated = updated;
-		}
 }

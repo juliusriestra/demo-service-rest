@@ -11,4 +11,5 @@ public interface UserService {
 	 public List<User> findByUserName(String userName);
 	 public User updateUser(User inUser);
 	 public int deleteUser(Long id);
+	 public User updatePartial(User user, long id);
 }
